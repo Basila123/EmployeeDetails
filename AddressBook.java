@@ -6,7 +6,7 @@ public class AddressBook {
         Scanner s= new Scanner(System.in);
         Scanner s1=new Scanner(System.in);
         // create instance collection to insert data and use array list collection
-        List<ContactPerson>collect=new ArrayList<ContactPerson>();
+        Collection<ContactPerson>collect=new ArrayList<ContactPerson>();
         int choice;
         //use do while concept to add choices.
         do{
@@ -49,7 +49,7 @@ public class AddressBook {
                     System.out.println("Enter first name to update");
                     firstname=s.next();
                     System.out.println("_______________________________________________________>");
-                    ListIterator<ContactPerson>li= collect.listIterator();//iterating using list iterator
+                    ListIterator<ContactPerson>li= ((ArrayList<ContactPerson>) collect).listIterator();//iterating using list iterator
                     while(li.hasNext()){
                         ContactPerson contact=li.next();
                         if(contact.getFirstname()==firstname){
@@ -84,8 +84,31 @@ public class AddressBook {
                     }
                     System.out.println("______________________________________");
                     break;
+                case 4:
+                     found=false;
+                    System.out.println("Enter first name to deleted");
+                    firstname=s.next();
+                    System.out.println("_______________________________________________________>");
+                    Iterator i=collect.iterator();
+                    i=collect.iterator();
+                    while(i.hasNext()){
+                        ContactPerson contact= (ContactPerson) i.next();
+                        if(contact.getFirstname()==firstname){
+                            i.remove();
+                            found=true;
+                        }
+                    }
+                    if(!found){
+                        System.out.println("Record Not Found");
+                    }
+                    else{
+                        System.out.println("Record is deleted Successfully------------!");
+                    }
+                    System.out.println("______________________________________");
+                    break;
 
             }
+
 
 
 
